@@ -1,5 +1,5 @@
 
-import { IsString, IsOptional, IsArray, IsEnum } from 'class-validator';
+import { IsString, IsOptional, IsArray, IsEnum, IsUrl } from 'class-validator';
 // import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { ApiReviewStatus } from 'src/enums/status.enum';
 
@@ -10,6 +10,7 @@ export class CreateApiReviewDto {
     apiName: string;
 
     // @ApiProperty({ example: 'https://api.example.com/v1/payment' })
+    @IsUrl()
     @IsString()
     apiEndPoint: string;
 

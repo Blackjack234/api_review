@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { ApiReview, ApiReviewDocument } from "../schema/apireview.schema";
-import { Model } from "mongoose";
+import { Model,QueryFilter } from "mongoose";
 
 
 @Injectable()
@@ -14,6 +14,11 @@ export class ApiReviewRepository {
 
 
     async getByParam(param:any){
-      return await this.apiReviewModel.find(param).lean();
+      return await this.apiReviewModel.findOne(param).lean();
+    }
+
+
+    async create(payload: Partial<ApiReview>):Promise<ApiReviewDocument>{
+      return await this.apiReviewModel.create(payload)
     }
 }

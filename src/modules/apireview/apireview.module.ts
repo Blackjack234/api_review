@@ -1,26 +1,26 @@
 import { Module } from '@nestjs/common';
 import { ApireviewController } from './apireview.controller';
-import { ApireviewService } from './apireview.service';
+import { ApiReviewService } from './apireview.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ApiReview, ApiReviewSchema } from './schema/apireview.schema';
 import { ApiReviewRepository } from './repositories/apireview.repository';
 
 @Module({
 
-  imports:[
+  imports: [
     MongooseModule.forFeatureAsync([
       {
-        name:ApiReview.name,
-        useFactory:()=>{
-           const schema = ApiReviewSchema;
-            schema.index({apiName:"text",description:"text"});
-            return schema;
+        name: ApiReview.name,
+        useFactory: () => {
+          const schema = ApiReviewSchema;
+          schema.index({ apiName: "text", description: "text" });
+          return schema;
         }
       }
     ])
   ],
   controllers: [ApireviewController],
-  providers: [ApireviewService,ApiReviewRepository],
-  exports: [ApireviewService, ApiReviewRepository]
+  providers: [ApiReviewService, ApiReviewRepository],
+  exports: [ApiReviewService, ApiReviewRepository]
 })
-export class ApireviewModule {}
+export class ApireviewModule { }
